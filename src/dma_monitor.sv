@@ -22,13 +22,13 @@ class dma_monitor extends uvm_monitor;
 		forever
 		begin
 		packet = dma_seq_item ::type_id ::create("packet",this);
-			repeat(2) @(vif.monitor_cb);
+			repeat(3) @(vif.monitor_cb);
 			packet.wr_en = vif.monitor_cb.wr_en;
 			packet.rd_en = vif.monitor_cb.rd_en;
 			packet.wdata = vif.monitor_cb.wdata;
 			packet.addr  = vif.monitor_cb.addr;
 			packet.rdata = vif.monitor_cb.rdata;
-			repeat(1) @(vif.monitor_cb);
+			//repeat(1) @(vif.monitor_cb);
 			$display("monitor, rdata = %h", vif.monitor_cb.rdata);
 			mon_port.write(packet);	
 			

@@ -22,7 +22,7 @@ dma_design dut (.clk(clk),
 
 	initial
 	begin
-		uvm_config_db #(virtual dma_intf.DRIVER)::set(null, "*", "vif", intf.DRIVER); 
+		uvm_config_db #(virtual dma_intf)::set(null, "*", "vif", intf); 
 		uvm_config_db #(virtual dma_intf.MONITOR)::set(null, "*", "vif", intf.MONITOR); 
 		rst_n = 0;
 		@(posedge clk) 
@@ -31,7 +31,7 @@ dma_design dut (.clk(clk),
 
 	initial
 	begin
-		run_test("Control_test");
+		run_test("all_reg_reset_test");
 	end
 
 endmodule

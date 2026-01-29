@@ -22,14 +22,14 @@ class dma_adapter extends uvm_reg_adapter;
     rw.status = UVM_IS_OK;
     if(item.rd_en)
 	begin
-		rw.data = item.wdata;
-		rw.kind = UVM_WRITE;
+		rw.data = item.rdata;
+		rw.kind = UVM_READ;
 	end
 
     else
 	begin
-		rw.data = item.rdata;
-		rw.kind = UVM_READ;
+		rw.data = item.wdata;
+		rw.kind = UVM_WRITE;
 	end
     
   endfunction
