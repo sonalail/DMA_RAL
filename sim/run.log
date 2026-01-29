@@ -1,0 +1,84 @@
+# vsim -c -novopt -suppress 12110 work.dma_top -l run.log -do "/*; add wave -r /*; run -all; exit;" -wlf waveform.wlf 
+# Start time: 14:50:52 on Jan 29,2026
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# //  Questa Sim
+# //  Version 10.6c linux Jul 25 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Refreshing /fetools/work_area/frontend/sonalail/DMA_RAL2/sim/work.dma_top
+# Refreshing /fetools/work_area/frontend/sonalail/DMA_RAL2/sim/work.dma_top_sv_unit
+# Loading sv_std.std
+# Loading mtiUvm.uvm_pkg
+# Loading work.dma_top_sv_unit
+# Loading work.dma_top
+# Refreshing /fetools/work_area/frontend/sonalail/DMA_RAL2/sim/work.dma_intf
+# Loading work.dma_intf
+# Refreshing /fetools/work_area/frontend/sonalail/DMA_RAL2/sim/work.dma_design
+# Loading work.dma_design
+# Loading mtiUvm.questa_uvm_pkg
+# Loading /tools/mentor/questasim_10.6c/questasim/uvm-1.1d/linux/uvm_dpi.so
+# /*
+# invalid command name "/*"
+#  add wave -r /*
+#  run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(215) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(217) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test Control_test...
+# include_coverage not located
+#   did you mean recording_detail?
+# UVM_INFO ../src/dma_sequence.sv(53) @ 0: uvm_test_top.env.agent.seqr@@seq4 [Control_seq] Data to be written is = 0000abcd 
+# driving at                    5
+# monitor, rdata = 00000000
+# driving at                   35
+# rdata in driver = 0                  45
+# monitor, rdata = 0000abcd
+# UVM_INFO ../src/dma_sequence.sv(56) @ 55: uvm_test_top.env.agent.seqr@@seq4 [Control_seq] value read from the dut is  = 00000000
+# monitor, rdata = 0000abcc
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1268) @ 105: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :    6
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Control_seq]     2
+# [Questa UVM]     2
+# [RNTST]     1
+# [TEST_DONE]     1
+# ** Note: $finish    : /tools/mentor/questasim_10.6c/questasim/linux/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 105 ns  Iteration: 53  Instance: /dma_top
+# End time: 14:50:55 on Jan 29,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 1
