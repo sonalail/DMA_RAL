@@ -1,3 +1,5 @@
+#DMA_RAL
+```bash
 # Running the test
 Using Questasim simulator
 cd DMA_RAL/sim/
@@ -17,3 +19,4 @@ make view &
 
 # Clean:
 make clean
+```
