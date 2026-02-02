@@ -277,3 +277,53 @@ class Config_test extends dma_test;
 	endtask
 
 endclass
+
+class Write_status_test extends dma_test;
+
+	`uvm_component_utils(Write_status_test)
+
+	Write_status_seq seq12;
+
+	function new(string name = "Write_status_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction 
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+		seq12 = Write_status_seq::type_id::create("seq12", this);
+	endfunction 
+
+	task run_phase(uvm_phase phase);
+		phase.raise_objection(this);
+	    seq12.regblock = env.regmodel;
+        seq12.start(env.agent.seqr);
+        phase.drop_objection(this);
+        phase.phase_done.set_drain_time(this, 20);
+	endtask
+
+endclass
+
+
+class Reset_method_test extends dma_test;
+
+	`uvm_component_utils(Reset_method_test)
+
+	reset_method_seq seq13;
+
+	function new(string name = "Reset_method_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction 
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+		seq13 = reset_method_seq::type_id::create("seq13", this);
+	endfunction 
+
+	task run_phase(uvm_phase phase);
+		phase.raise_objection(this);
+	    seq13.regblock = env.regmodel;
+        seq13.start(env.agent.seqr);
+        phase.drop_objection(this);
+        phase.phase_done.set_drain_time(this, 20);
+	endtask
+endclass

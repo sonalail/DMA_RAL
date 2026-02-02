@@ -28,7 +28,6 @@ class dma_driver extends uvm_driver #(dma_seq_item);
 
 	virtual task drive();
 		// @(vif.DRIVER.driver_cb);
-		$display("driving at ",$time);
 		vif.DRIVER.driver_cb.wr_en <= req.wr_en;
 		vif.DRIVER.driver_cb.rd_en <= req.rd_en;
 		vif.DRIVER.driver_cb.addr  <= req.addr;
@@ -37,7 +36,6 @@ class dma_driver extends uvm_driver #(dma_seq_item);
 		repeat(3)@(vif.DRIVER.driver_cb);
 		if(req.rd_en)
 		begin
-		$display("rdata in driver = %0d",vif.driver_cb.rdata,$time);
 		repeat(2)@(vif.DRIVER.driver_cb);
 		req.rdata = vif.rdata;
 		end

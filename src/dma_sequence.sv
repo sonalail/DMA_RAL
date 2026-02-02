@@ -66,15 +66,54 @@ class Io_addr_seq extends dma_sequence;
 
 	task body();
 		uvm_status_e status; 
-		bit [31:0] w_data ,r_data, mirror_value;
+		bit [31:0] w_data ,rdata, mirror_value;
 		w_data = 32'hB0B0_A5A5; 
-
+		
+		//write read method
 		`uvm_info(get_type_name(), $sformatf("Data to be written is = %h ", w_data), UVM_MEDIUM)
 		regblock.io_reg_inst.write(status, w_data, UVM_FRONTDOOR);
 
-		regblock.io_reg_inst.read(status, r_data, UVM_FRONTDOOR);
+		regblock.io_reg_inst.read(status, rdata, UVM_FRONTDOOR);
 
-		`uvm_info(get_type_name(), $sformatf("value read from the dut is  = %h ", r_data), UVM_MEDIUM)
+		`uvm_info(get_type_name(), $sformatf("value read from the dut is  = %h ", rdata), UVM_MEDIUM)
+		
+		//set get method
+		rdata = regblock.io_reg_inst.get();
+		`uvm_info(get_type_name(), $sformatf("Desired value before setting is = %h ", rdata), UVM_MEDIUM)
+		
+		regblock.io_reg_inst.set(32'h1010_1010);
+
+		rdata = regblock.io_reg_inst.get();
+		`uvm_info(get_type_name(), $sformatf("Desired value after setting is = %h ", rdata), UVM_MEDIUM)
+
+		//mirror value set get method
+		rdata = regblock.io_reg_inst.get();
+		mirror_value = regblock.io_reg_inst.get_mirrored_value();
+		`uvm_info(get_type_name(), $sformatf("Desired value = %0h and mirrored value = %0h before setting ", rdata,mirror_value), UVM_MEDIUM)
+		
+		regblock.io_reg_inst.set(32'hA5A5_A5A5);
+
+		rdata = regblock.io_reg_inst.get();
+		mirror_value = regblock.io_reg_inst.get_mirrored_value();
+		`uvm_info(get_type_name(), $sformatf("Desired value = %0h and mirrored value = %0h after setting ", rdata,mirror_value), UVM_MEDIUM)
+
+		regblock.io_reg_inst.update(status);
+
+		rdata = regblock.io_reg_inst.get();
+		mirror_value = regblock.io_reg_inst.get_mirrored_value();
+		`uvm_info(get_type_name(), $sformatf("Desired value = %0h and mirrored value = %0h after update method ", rdata,mirror_value), UVM_MEDIUM)
+		//mirror value predict method with write method
+		regblock.io_reg_inst.write(status,32'h1111_1111);
+		rdata = regblock.io_reg_inst.get();
+		mirror_value = regblock.io_reg_inst.get_mirrored_value();
+		`uvm_info(get_type_name(), $sformatf("Desired value = %0h and mirrored value = %0h before predict ", rdata,mirror_value), UVM_MEDIUM)
+		
+		regblock.io_reg_inst.predict(32'hBBBB_BBBB);
+
+		rdata = regblock.io_reg_inst.get();
+		mirror_value = regblock.io_reg_inst.get_mirrored_value();
+		`uvm_info(get_type_name(), $sformatf("Desired value = %0h and mirrored value = %0h after predict method ", rdata,mirror_value), UVM_MEDIUM)
+
 	endtask
 endclass
 
@@ -201,6 +240,64 @@ class Config_seq extends dma_sequence;
 	endtask
 endclass
 
+
+class Write_status_seq extends dma_sequence;
+	`uvm_object_utils(Write_status_seq)
+
+	function new(string name = "Write_status_seq");
+		super.new(name);
+	endfunction 
+
+	task body();
+		uvm_status_e status; 
+		bit [31:0] w_data ,r_data, mirror_value;
+		w_data = 32'h0000_00A5; 
+
+		`uvm_info(get_type_name(), $sformatf("Data to be written is = %h ", w_data), UVM_MEDIUM)
+		regblock.config_reg_inst.write(status, w_data, UVM_FRONTDOOR);
+		if(status != UVM_IS_OK)
+		`uvm_error(get_type_name(),"Attempting to write to a read only register");
+		//regblock.config_reg_inst.read(status, r_data, UVM_FRONTDOOR);
+
+		`uvm_info(get_type_name(), $sformatf("value read from the dut is  = %h ", r_data), UVM_MEDIUM)
+	endtask
+endclass
+
+class reset_method_seq extends dma_sequence;
+	`uvm_object_utils(reset_method_seq)
+
+	function new(string name = "reset_method_seq");
+		super.new(name);
+	endfunction 
+
+	task body();
+		uvm_status_e status; 
+		bit [31:0] rst_reg ,rdata, mirror_value;
+		bit rst_status;
+		
+		rst_status = regblock.mem_addr_reg_inst.has_reset();
+		`uvm_info(get_type_name(), $sformatf("Reset status is %h",rst_status), UVM_MEDIUM)
+		rst_reg = regblock.mem_addr_reg_inst.get_reset();
+		`uvm_info(get_type_name(), $sformatf("Reset value is %h",rst_reg), UVM_MEDIUM)
+		
+		rdata = regblock.mem_addr_reg_inst.get();
+		mirror_value = regblock.mem_addr_reg_inst.get_mirrored_value();
+		`uvm_info("SEQ", $sformatf("Before Reset -> Mir : %0d Des : %0d ", mirror_value, rdata), UVM_NONE);
+		///////////////mir and des value after rst
+		$display("--------------Applying Reset to register model ---------------");
+		regblock.mem_addr_reg_inst.reset();
+		rdata = regblock.mem_addr_reg_inst.get();
+		mirror_value = regblock.mem_addr_reg_inst.get_mirrored_value();
+		`uvm_info("SEQ", $sformatf("After Reset -> Mir : %0d Des : %0d ", mirror_value, rdata), UVM_NONE);
+		/////////////updating rst value
+		$display("--------------Updating register reset value and applying Reset ---------------");
+		regblock.mem_addr_reg_inst.set_reset(32'hff);
+		regblock.mem_addr_reg_inst.reset();
+		rdata = regblock.mem_addr_reg_inst.get();
+		mirror_value = regblock.mem_addr_reg_inst.get_mirrored_value();
+		`uvm_info("SEQ", $sformatf("After Reset -> Mir : %0d Des : %0d ", mirror_value, rdata), UVM_NONE);
+	endtask
+endclass
 
 class all_reg_reset_seq extends dma_sequence;
 	`uvm_object_utils(all_reg_reset_seq)

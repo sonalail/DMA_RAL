@@ -29,7 +29,6 @@ class dma_monitor extends uvm_monitor;
 			packet.addr  = vif.monitor_cb.addr;
 			packet.rdata = vif.monitor_cb.rdata;
 			//repeat(1) @(vif.monitor_cb);
-			$display("monitor, rdata = %h", vif.monitor_cb.rdata);
 			mon_port.write(packet);	
 			
 		end

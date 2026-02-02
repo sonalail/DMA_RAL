@@ -31,7 +31,7 @@ dma_design dut (.clk(clk),
 
 	initial
 	begin
-		run_test("all_reg_reset_test");
+		run_test("Reset_method_test");
 	end
 
 endmodule
