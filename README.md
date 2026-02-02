@@ -12,7 +12,7 @@ ex: make run top_module=dma_top
 # Simulation:
 make run top_module=<module_name> arg="+UVM_TESTNAME=<testname>"
 
-ex: make run top_module=dma_top arg="+TESTNAME=Interrupt_test"
+ex: make run top_module=dma_top arg="+UVM_TESTNAME=Interrupt_test"
 
 # Wavefrom:  
 make view &
