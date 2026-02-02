@@ -257,9 +257,44 @@ class Write_status_seq extends dma_sequence;
 		regblock.config_reg_inst.write(status, w_data, UVM_FRONTDOOR);
 		if(status != UVM_IS_OK)
 		`uvm_error(get_type_name(),"Attempting to write to a read only register");
-		//regblock.config_reg_inst.read(status, r_data, UVM_FRONTDOOR);
 
 		`uvm_info(get_type_name(), $sformatf("value read from the dut is  = %h ", r_data), UVM_MEDIUM)
+	endtask
+endclass
+
+
+class Backdoorwrite_frontdoorread_seq extends dma_sequence;
+	`uvm_object_utils(Backdoorwrite_frontdoorread_seq)
+
+	function new(string name = "Backdoorwrite_frontdoorread_seq");
+		super.new(name);
+	endfunction 
+
+	task body();
+		uvm_status_e status; 
+		bit [31:0] w_data ,r_data, mirror_value,new_value;
+		w_data = 32'hB5A5_C8A5; 
+
+		`uvm_info(get_type_name(), $sformatf("Data to be written to the backdoor is = %h ", w_data), UVM_MEDIUM)
+		regblock.extra_info_reg_inst.write(status, w_data, UVM_BACKDOOR);
+
+		r_data = regblock.extra_info_reg_inst.get();
+		mirror_value = regblock.extra_info_reg_inst.get_mirrored_value();
+		
+		`uvm_info(get_type_name(),$sformatf("DATA read by writing backdoor desired is %h mirror is %h",r_data,mirror_value),UVM_MEDIUM)
+		//using peek and poke method
+		
+		`uvm_info(get_type_name(), $sformatf("Using peek and poke method"), UVM_MEDIUM)
+		regblock.extra_info_reg_inst.poke(status,32'h1234_5678);
+
+		r_data = regblock.extra_info_reg_inst.get();
+		mirror_value = regblock.extra_info_reg_inst.get_mirrored_value();
+		
+		`uvm_info(get_type_name(),$sformatf("DATA read by get method desired is %h mirror is %h",r_data,mirror_value),UVM_MEDIUM)
+		
+		regblock.extra_info_reg_inst.peek(status,new_value);
+
+		`uvm_info(get_type_name(),$sformatf("DATA read by peek method is %H",new_value),UVM_MEDIUM)
 	endtask
 endclass
 

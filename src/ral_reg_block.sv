@@ -266,10 +266,10 @@ class dma_reg_block extends uvm_reg_block;
 	endfunction
 
 	function void build;
-	reg_inst = interrupt_reg::type_id::create("reg_inst");
-	reg_inst.build();
-	reg_inst.configure(this);
-	
+		add_hdl_path("dma_top.dut","RTL");
+		reg_inst = interrupt_reg::type_id::create("reg_inst");
+		reg_inst.build();
+		reg_inst.configure(this);
 	
 		ctrl_reg_inst = dma_ctrl_reg::type_id::create("ctrl_reg_inst");
     	ctrl_reg_inst.build();
@@ -284,8 +284,10 @@ class dma_reg_block extends uvm_reg_block;
     	mem_addr_reg_inst.configure(this);
 
     	extra_info_reg_inst = dma_extra_info_reg::type_id::create("extra_info_reg_inst");
-   	extra_info_reg_inst.build();
+   		extra_info_reg_inst.build();
     	extra_info_reg_inst.configure(this);
+    	extra_info_reg_inst.add_hdl_path_slice("extra_info",0,32);
+
 
     	status_reg_inst = dma_status_reg::type_id::create("status_reg_inst");
     	status_reg_inst.build();
