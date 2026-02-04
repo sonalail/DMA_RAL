@@ -352,3 +352,29 @@ class Backdoorwrite_frontdoorread_test extends dma_test;
         phase.phase_done.set_drain_time(this, 20);
 	endtask
 endclass
+
+
+class Error_status_test extends dma_test;
+
+	`uvm_component_utils(Error_status_test)
+
+	Error_status_seq seq15;
+
+	function new(string name = "Error_status_test", uvm_component parent = null);
+		super.new(name, parent);
+	endfunction 
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+		seq15 = Error_status_seq::type_id::create("seq15", this);
+	endfunction 
+
+	task run_phase(uvm_phase phase);
+		phase.raise_objection(this);
+	    seq15.regblock = env.regmodel;
+        seq15.start(env.agent.seqr);
+        phase.drop_objection(this);
+        phase.phase_done.set_drain_time(this, 20);
+	endtask
+endclass
+

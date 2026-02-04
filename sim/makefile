@@ -8,5 +8,13 @@ run:
 view:
 	vsim -view waveform.wlf
 
+compile_with_cov:
+	vlib work;
+	vlog -sv +acc +cover +fcover -l compile.log ../src/$(top_file)
+
+run_with_cov:
+	vsim -vopt work.$(top_module) $(arg) -voptargs=+acc=npr -assertdebug -l run.log -coverage -c -do "coverage save -onexit -assert -directive -cvg -codeAll coverage.ucdb; coverage report -detail;run -all; exit"; 
+	vcover report -html coverage.ucdb -htmldir covReport -details;
+
 clean:
-	rm -rf transcript *.vcd *.wlf work/ *.log *.ucdb *.vstf covReport covhtmlreport 
+	rm -rf transcript *.vcd *.wlf work/ *.log *.ucdb *.vstf covReport covhtmlreport final_cov_report log ucdb 

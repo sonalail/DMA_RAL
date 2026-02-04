@@ -172,6 +172,11 @@ class Status_seq extends dma_sequence;
 	task body();
 		uvm_status_e status; 
 		bit [31:0] w_data ,r_data, mirror_value;
+		w_data = 32'h1234;
+
+		regblock.status_reg_inst.write(status, w_data, UVM_BACKDOOR);
+
+		`uvm_info(get_type_name(), $sformatf("Backdoor write of read only register value  = %h ", w_data), UVM_MEDIUM)
 
 		regblock.status_reg_inst.read(status, r_data, UVM_FRONTDOOR);
 
@@ -189,11 +194,17 @@ class Transfer_count_seq extends dma_sequence;
 
 	task body();
 		uvm_status_e status; 
-		bit [31:0] w_data ,r_data, mirror_value;
+		bit [31:0] w_data ,r_data, r1_data;
+
+		`uvm_info(get_type_name(), $sformatf("Starting the DMA by writing the control register"), UVM_MEDIUM)
+
+		regblock.ctrl_reg_inst.write(status, 32'h1);
 
 		regblock.transfer_count_reg_inst.read(status, r_data, UVM_FRONTDOOR);
+		regblock.status_reg_inst.read(status, r1_data, UVM_FRONTDOOR);
 
-		`uvm_info(get_type_name(), $sformatf("value read from the dut is  = %h ", r_data), UVM_MEDIUM)
+		`uvm_info(get_type_name(), $sformatf("value of tranfer count register ead after starting dma is = %h ", r_data), UVM_MEDIUM)
+		`uvm_info(get_type_name(), $sformatf("value of status register  after starting dma is = %h ", r_data), UVM_MEDIUM)
 	endtask
 endclass
 
@@ -262,6 +273,27 @@ class Write_status_seq extends dma_sequence;
 	endtask
 endclass
 
+
+class Error_status_seq extends dma_sequence;
+	`uvm_object_utils(Error_status_seq)
+
+	function new(string name = "Error_status_seq");
+		super.new(name);
+	endfunction 
+
+	task body();
+		uvm_status_e status; 
+		bit [31:0] w_data ,r_data, mirror_value;
+		w_data = 32'h0000_0015; 
+
+		`uvm_info(get_type_name(), $sformatf("Data to be written is = %h ", w_data), UVM_MEDIUM)
+		regblock.error_status_reg_inst.write(status, w_data, UVM_FRONTDOOR);
+
+		regblock.error_status_reg_inst.read(status, r_data, UVM_FRONTDOOR);
+
+		`uvm_info(get_type_name(), $sformatf("value read from the dut is  = %h ", r_data), UVM_MEDIUM)
+	endtask
+endclass
 
 class Backdoorwrite_frontdoorread_seq extends dma_sequence;
 	`uvm_object_utils(Backdoorwrite_frontdoorread_seq)
