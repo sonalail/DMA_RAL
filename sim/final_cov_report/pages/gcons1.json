@@ -1,0 +1,23 @@
+var g_db_data = [
+{dummy:0},
+{name:'intr_cp',f:1,type:6,id:1267,tb:'6',h:'2',m:'4',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/interrupt_reg',parent:'1254'},
+{name:'dma_ctrl_cp',f:1,type:6,id:1289,tb:'68',h:'5',m:'63',hp:'7.35%',cov:['51.04%','Y'],g:'100.00%',gp:['51.04%','Y'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_ctrl_reg',parent:'1276'},
+{name:'dma_io_cp',f:1,type:6,id:1313,tb:'64',h:'4',m:'60',hp:'6.25%',cov:['6.25%','R'],g:'100.00%',gp:['6.25%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_io_reg',parent:'1300'},
+{name:'mem_addr_cp',f:1,type:6,id:1333,tb:'64',h:'2',m:'62',hp:'3.12%',cov:['3.12%','R'],g:'100.00%',gp:['3.12%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_mem_addr_reg',parent:'1320'},
+{name:'dma_extra_info_cp',f:1,type:6,id:1353,tb:'64',h:'2',m:'62',hp:'3.12%',cov:['3.12%','R'],g:'100.00%',gp:['3.12%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_extra_info_reg',parent:'1340'},
+{name:'dma_status_cp',f:1,type:6,id:1373,tb:'88',h:'6',m:'82',hp:'6.81%',cov:['34.63%','R'],g:'100.00%',gp:['34.63%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_status_reg',parent:'1360'},
+{name:'dma_transfer_count_cp',f:1,type:6,id:1403,tb:'64',h:'1',m:'63',hp:'1.56%',cov:['1.56%','R'],g:'100.00%',gp:['1.56%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_transfer_count_reg',parent:'1390'},
+{name:'dma_desc_addr_cp',f:1,type:6,id:1423,tb:'64',h:'2',m:'62',hp:'3.12%',cov:['3.12%','R'],g:'100.00%',gp:['3.12%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_desc_addr_reg',parent:'1410'},
+{name:'dma_error_status_cp',f:1,type:6,id:1443,tb:'138',h:'7',m:'131',hp:'5.07%',cov:['36.16%','R'],g:'100.00%',gp:['36.16%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_error_status_reg',parent:'1430'},
+{name:'dma_config_cp',f:1,type:6,id:1474,tb:'18',h:'7',m:'11',hp:'38.88%',cov:['41.66%','R'],g:'100.00%',gp:['41.66%','R'],opts:[[],['merge_instance','auto(true)']],hdlPath:'/dma_top_sv_unit/dma_config_reg',parent:'1462'},
+{name:'intr_cp',f:1,type:6,id:2001,tb:'6',h:'2',m:'4',hp:'33.33%',cov:['33.33%','R'],g:'100.00%',gp:['33.33%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::interrupt_reg',parent:'1988'},
+{name:'dma_ctrl_cp',f:1,type:6,id:2023,tb:'68',h:'5',m:'63',hp:'7.35%',cov:['51.04%','Y'],g:'100.00%',gp:['51.04%','Y'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_ctrl_reg',parent:'2010'},
+{name:'dma_io_cp',f:1,type:6,id:2047,tb:'64',h:'4',m:'60',hp:'6.25%',cov:['6.25%','R'],g:'100.00%',gp:['6.25%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_io_reg',parent:'2034'},
+{name:'mem_addr_cp',f:1,type:6,id:2067,tb:'64',h:'2',m:'62',hp:'3.12%',cov:['3.12%','R'],g:'100.00%',gp:['3.12%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_mem_addr_reg',parent:'2054'},
+{name:'dma_extra_info_cp',f:1,type:6,id:2087,tb:'64',h:'2',m:'62',hp:'3.12%',cov:['3.12%','R'],g:'100.00%',gp:['3.12%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_extra_info_reg',parent:'2074'},
+{name:'dma_status_cp',f:1,type:6,id:2107,tb:'88',h:'6',m:'82',hp:'6.81%',cov:['34.63%','R'],g:'100.00%',gp:['34.63%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_status_reg',parent:'2094'},
+{name:'dma_transfer_count_cp',f:1,type:6,id:2137,tb:'64',h:'1',m:'63',hp:'1.56%',cov:['1.56%','R'],g:'100.00%',gp:['1.56%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_transfer_count_reg',parent:'2124'},
+{name:'dma_desc_addr_cp',f:1,type:6,id:2157,tb:'64',h:'2',m:'62',hp:'3.12%',cov:['3.12%','R'],g:'100.00%',gp:['3.12%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_desc_addr_reg',parent:'2144'},
+{name:'dma_error_status_cp',f:1,type:6,id:2177,tb:'138',h:'7',m:'131',hp:'5.07%',cov:['36.16%','R'],g:'100.00%',gp:['36.16%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_error_status_reg',parent:'2164'},
+{name:'dma_config_cp',f:1,type:6,id:2208,tb:'18',h:'7',m:'11',hp:'38.88%',cov:['41.66%','R'],g:'100.00%',gp:['41.66%','R'],opts:[[],['merge_instance','true']],hdlPath:'work.dma_top_sv_unit::dma_config_reg',parent:'2196'}];
+processConsCovergroupsData(g_db_data);

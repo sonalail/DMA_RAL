@@ -1,0 +1,14 @@
+var g_data = {
+a1564:{
+scopes:[{s:'1253',b:'1',val:'dma_top_sv_unit'},{val:'dma_adapter'},{link:'z.htm?f=0&s=1564',val:'bus2reg'}]
+,assertions:[{dummy:0},{cr:'c',c:'g',z:'immed__20',fc:'Gr',pc:'Gr',h0:'0',h1:'89'}
+],
+},
+a2298:{
+scopes:[{s:'1987',b:'1',val:'work.dma_top_sv_unit'},{val:'dma_adapter'},{link:'z.htm?f=0&s=2298',val:'bus2reg'}]
+,assertions:[{dummy:0},{cr:'c',c:'g',z:'immed__20',fc:'Gr',pc:'Gr',h0:'0',h1:'89'}
+],
+},
+dummyEnd:0
+};
+processAssertionsData(g_data,1);

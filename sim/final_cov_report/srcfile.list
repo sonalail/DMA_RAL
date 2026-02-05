@@ -1,0 +1,14 @@
+../rtl/design.v
+../src/dma_adapter.sv
+../src/dma_agent.sv
+../src/dma_driver.sv
+../src/dma_environment.sv
+../src/dma_intf.sv
+../src/dma_monitor.sv
+../src/dma_scoreboard.sv
+../src/dma_seq_item.sv
+../src/dma_sequence.sv
+../src/dma_sequencer.sv
+../src/dma_test.sv
+../src/dma_top.sv
+../src/ral_reg_block.sv
